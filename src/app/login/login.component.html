@@ -1,0 +1,88 @@
+<div class="login-body">
+    <div class="card login-panel p-fluid">
+        <div class="login-panel-content">
+            <form
+                class="grid"
+                id="my-form"
+                [formGroup]="loginForm"
+                (ngSubmit)="login()"
+            >
+                <div class="col-3" style="text-align: left">
+                    <img
+                        src="assets/layout/images/login/icon-login.svg"
+                        alt="avalon-ng"
+                    />
+                </div>
+                <div class="col-9" style="text-align: left">
+                    <h2 class="welcome-text">Welcome</h2>
+                    <span class="guest-sign-in"
+                        >Sign in to Hananet Network</span
+                    >
+                </div>
+                <div class="col-12" style="text-align: left">
+                    <label class="login-label">Username</label>
+                    <div class="login-input">
+                        <input
+                            formControlName="username"
+                            [ngClass]="
+                                loginForm.get('username').invalid &&
+                                loginForm.get('username').touched &&
+                                'ng-invalid ng-dirty'
+                            "
+                            autocomplete="off"
+                            type="text"
+                            placeholder="Username"
+                            pInputText
+                        />
+                        <!-- <app-form-required-text
+                            [isLabelVisible]="
+                                loginForm.get('username').invalid &&
+                                loginForm.get('username').touched
+                            "
+                            label="Username is required"
+                        >
+                        </app-form-required-text> -->
+                    </div>
+                </div>
+                <div class="col-12" style="text-align: left">
+                    <label class="login-label">Password</label>
+                    <div class="login-input">
+                        <input
+                            [feedback]="false"
+                            formControlName="password"
+                            [ngClass]="
+                                loginForm.get('password').invalid &&
+                                loginForm.get('password').touched &&
+                                'ng-invalid ng-dirty'
+                            "
+                            autocomplete="off"
+                            type="password"
+                            placeholder="Password"
+                            pPassword
+                        />
+                        <!-- <app-form-required-text
+                            [isLabelVisible]="
+                                loginForm.get('password').invalid &&
+                                loginForm.get('password').touched
+                            "
+                            label="Password is required"
+                        >
+                        </app-form-required-text> -->
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 button-pane">
+                    <button
+                        pButton
+                        type="button"
+                        label="Sign In"
+                        type="submit"
+                    ></button>
+                </div>
+                <div class="col-12 md:col-6 link-pane">
+                    <button class="p-link">Forgot Password?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p-toast position="bottom-right"></p-toast>
