@@ -153,6 +153,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { TeztsComponent } from './tezts/tezts.component';
 import { LoginComponent } from './login/login.component';
 import { MessageService } from 'primeng/api';
+import { DriversComponent } from './drivers/drivers.component';
+import { HelpersComponent } from './helpers/helpers.component';
+import { GenericCreateTableComponent } from './generic-create-table/generic-create-table.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -297,7 +300,10 @@ FullCalendarModule.registerPlugins([
         BlockViewer,
         BlocksComponent,
         TeztsComponent,
-        LoginComponent
+        LoginComponent,
+        DriversComponent,
+        HelpersComponent,
+        GenericCreateTableComponent
     ],
     providers: [
         { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },

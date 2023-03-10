@@ -35,6 +35,8 @@ import { AppCrudComponent } from './pages/app.crud.component';
 import { AppCalendarComponent } from './pages/app.calendar.component';
 import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
 import { LoginComponent } from './login/login.component';
+import { DriversComponent } from './drivers/drivers.component';
+import { HelpersComponent } from './helpers/helpers.component';
 
 @NgModule({
     imports: [
@@ -69,7 +71,8 @@ import { LoginComponent } from './login/login.component';
                     { path: 'pages/timeline', component: AppTimelineDemoComponent },
                     { path: 'pages/help', component: AppHelpComponent },
                     { path: 'documentation', component: DocumentationComponent },
-                    { path: 'blocks', component: BlocksComponent },
+                    { path: 'drivers', component: DriversComponent },
+                    { path: 'helpers', component: HelpersComponent },
                 ]
             },
             {

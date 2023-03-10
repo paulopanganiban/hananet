@@ -21,6 +21,9 @@ service cloud.firestore {
       request.resource.data.seqNo is number >= 0 &&
       isNonEmptyString('url')
     }
+     match /{document=**} {
+      allow read, write: if true;
+    }
     match /courses/{courseId} {
       allow read: if isKnownUser();
 

@@ -1,0 +1,78 @@
+<h1>Drivers List</h1>
+
+<div>
+    <p-button label="Add Driver" (click)="this.display = true"></p-button>
+</div>
+<ng-container *ngIf="this.driverService.getDrivers$ | async as data">
+    <div class="mt-4">
+        <p-table
+            [columns]="data.columns"
+            [value]="data.rows"
+            [tableStyle]="{ 'min-width': '50rem' }"
+        >
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{ col.header }}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{ rowData[col.field] }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</ng-container>
+<p-dialog header="Add a Driver" [(visible)]="this.display">
+    <form class="card p-fluid" [formGroup]="this.driverForm">
+        <div class="field">
+            <label htmlFor="firstName">First Name</label>
+            <input
+                formControlName="firstName"
+                pInputText
+                id="firstName"
+                type="text"
+            />
+        </div>
+        <div class="field">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+                formControlName="lastName"
+                pInputText
+                id="lastName"
+                type="text"
+            />
+        </div>
+        <div class="field">
+            <label htmlFor="cpNo">CP No.</label>
+            <input
+                formControlName="contactNumber"
+                pInputText
+                id="cpNo"
+                type="text"
+            />
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            class="p-button-secondary p-button-text"
+            icon="pi pi-times"
+            (click)="display = false"
+            label="Cancel"
+        ></button>
+        <button
+            [loading]="this.loading"
+            [disabled]="this.driverForm.invalid"
+            [icon]="icon"
+            (click)="this.handleAddDriver()"
+            label="Submit"
+            pButton
+            autofocus
+        ></button>
+    </ng-template>
+</p-dialog>
