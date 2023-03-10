@@ -4,20 +4,22 @@ import { Product } from '../demo/domain/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DriverService } from '../_services/driver.service';
 import { MessageService } from 'primeng/api';
+import { HelperService } from '../_services/helper.service';
 
 @Component({
-  selector: 'app-generic-create-table',
-  templateUrl: './generic-create-table.component.html',
-  styleUrls: ['./generic-create-table.component.scss']
+  selector: 'app-helpers',
+  templateUrl: './helpers.component.html',
+  styleUrls: ['./helpers.component.scss']
 })
-export class GenericCreateTableComponent implements OnInit {
+export class HelpersComponent implements OnInit{
 
   constructor(private productService: ProductService,
     private formBuilder: FormBuilder,
-    public driverService: DriverService,
+    public helperService: HelperService,
     private messageService: MessageService
   ) { }
   display = false
+
   driverForm: FormGroup
   initialFormValue: FormGroup
   ngOnInit(): void {
@@ -35,20 +37,16 @@ export class GenericCreateTableComponent implements OnInit {
   handleAddDriver() {
     this.loading = true
     const { firstName, lastName, contactNumber } = this.driverForm.value
-    this.driverService.addDriver({
+    this.helperService.addDriver({
       firstName, lastName, contactNumber
-    })
-      .subscribe({
-        complete: () => {
-          this.loading = false
-          this.display = false
-          this.driverForm.reset(this.initialFormValue)
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Driver Succesfully Added'
-          })
-        }
+    }).subscribe((res) => {
+      this.loading = false
+      this.display = false
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Driver Succesfully Added'
       })
+    })
   }
 }

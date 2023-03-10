@@ -36,7 +36,8 @@ import { AppCalendarComponent } from './pages/app.calendar.component';
 import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
 import { LoginComponent } from './login/login.component';
 import { DriversComponent } from './drivers/drivers.component';
-import { HelpersComponent } from './helpers/helpers.component';
+import { HelpersComponent } from './helpers-list/helpers.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
     imports: [
@@ -73,6 +74,7 @@ import { HelpersComponent } from './helpers/helpers.component';
                     { path: 'documentation', component: DocumentationComponent },
                     { path: 'drivers', component: DriversComponent },
                     { path: 'helpers', component: HelpersComponent },
+                    { path: 'users', component: CreateUserComponent },
                 ]
             },
             {

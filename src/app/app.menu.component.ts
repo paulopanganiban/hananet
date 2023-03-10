@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-menu',
@@ -19,10 +19,12 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
-                    {label: 'Drivers', icon: 'pi pi-fw pi-home', routerLink: ['/drivers'] },
-                    {label: 'Helpers', icon: 'pi pi-fw pi-home', routerLink: ['/helpers'] }
+                    { label: 'Drivers', icon: 'pi pi-fw pi-home', routerLink: ['/drivers'] },
+                    { label: 'Helpers', icon: 'pi pi-fw pi-home', routerLink: ['/helpers'] },
+                    { label: 'Users', icon: 'pi pi-fw pi-home', routerLink: ['/users'] },
                 ]
             },
+            /*
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
                 items: [
@@ -128,6 +130,7 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             }
+            */
         ];
     }
 }

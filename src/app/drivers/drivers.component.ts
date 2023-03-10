@@ -18,19 +18,11 @@ export class DriversComponent implements OnInit {
     private messageService: MessageService
   ) { }
   display = false
-  products: Product[];
-  cols = [
-    { field: 'code', header: 'Code' },
-    { field: 'name', header: 'Name' },
-    { field: 'category', header: 'Category' },
-    { field: 'quantity', header: 'Quantity' }
-  ];
 
   driverForm: FormGroup
   initialFormValue: FormGroup
   ngOnInit(): void {
     this.initializeForm()
-    this.productService.getProductsSmall().then(data => this.products = data);
   }
   initializeForm() {
     this.driverForm = this.formBuilder.group({

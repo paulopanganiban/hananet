@@ -154,8 +154,9 @@ import { TeztsComponent } from './tezts/tezts.component';
 import { LoginComponent } from './login/login.component';
 import { MessageService } from 'primeng/api';
 import { DriversComponent } from './drivers/drivers.component';
-import { HelpersComponent } from './helpers/helpers.component';
+import { HelpersComponent } from './helpers-list/helpers.component';
 import { GenericCreateTableComponent } from './generic-create-table/generic-create-table.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -303,7 +304,8 @@ FullCalendarModule.registerPlugins([
         LoginComponent,
         DriversComponent,
         HelpersComponent,
-        GenericCreateTableComponent
+        GenericCreateTableComponent,
+        CreateUserComponent
     ],
     providers: [
         { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
