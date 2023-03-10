@@ -39,11 +39,17 @@ import { DriversComponent } from './drivers/drivers.component';
 import { HelpersComponent } from './helpers-list/helpers.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login'])
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
-                path: '', component: AppMainComponent,
+                path: '', component: AppMainComponent, canActivate: [AngularFireAuthGuard],
+                data: {
+                    authGuardPipe: redirectUnauthorizedToLogin
+                },
                 children: [
                     { path: '', component: DashboardDemoComponent },
                     { path: 'dashboards/generic', component: DashboardDemoComponent },
