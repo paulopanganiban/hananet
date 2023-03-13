@@ -36,8 +36,10 @@ import { UserService } from './_services/user.service';
 
                                 <span
                                 *ngIf="this.userService.userCredentials$ | async as userCredentials"
-                                class="topbar-item-name">{{userCredentials.displayName}}</span>
-                                <span class="topbar-item-role">{{userCredentials.email}}</span>
+                                class="topbar-item-name">{{userCredentials.email}}</span>
+                                <span class="topbar-item-role"
+                                *ngIf="this.userService.roles$ | async as roles"
+                                >{{roles.role}}</span>
                             </ng-container>
                             </div>
                         </a>

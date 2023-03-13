@@ -14,6 +14,7 @@ export function getUserCredentialsMiddleware(req, res, next) {
             .then(jwtPayload => {
                 req['uid'] = jwtPayload.uid
                 req['admin'] = jwtPayload.admin
+                req['role'] = jwtPayload.role
                 functions.logger.debug(
                     `Credentials: uid=${jwtPayload.uid}, admin=${jwtPayload.admin}`
                 )

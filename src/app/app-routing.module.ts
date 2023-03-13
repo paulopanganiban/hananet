@@ -40,7 +40,8 @@ import { HelpersComponent } from './helpers-list/helpers.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 
 import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-
+const adminOnly = () => hasCustomClaim('admin')
+const dispatcherOnly = () => hasCustomClaim('dispatcher')
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login'])
 @NgModule({
     imports: [
@@ -78,9 +79,28 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login'])
                     { path: 'pages/timeline', component: AppTimelineDemoComponent },
                     { path: 'pages/help', component: AppHelpComponent },
                     { path: 'documentation', component: DocumentationComponent },
-                    { path: 'drivers', component: DriversComponent },
-                    { path: 'helpers', component: HelpersComponent },
-                    { path: 'users', component: CreateUserComponent },
+
+
+                    // 
+
+                    {
+                        path: 'drivers', component: DriversComponent, canActivate: [AngularFireAuthGuard],
+                        data: {
+                            authGuardPipe: adminOnly
+                        }
+                    },
+                    {
+                        path: 'helpers', component: HelpersComponent, canActivate: [AngularFireAuthGuard],
+                        data: {
+                            authGuardPipe: adminOnly
+                        }
+                    },
+                    {
+                        path: 'users', component: CreateUserComponent, canActivate: [AngularFireAuthGuard],
+                        data: {
+                            authGuardPipe: adminOnly
+                        }
+                    },
                 ]
             },
             {

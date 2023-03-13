@@ -1,1 +1,73 @@
-<p>create-user works!</p>
+
+<div>
+    <p-button label="Create User" (click)="this.display = true"></p-button>
+</div>
+<ng-container *ngIf="false">
+    <div class="mt-4">
+        <p-table
+            [columns]="data.columns"
+            [value]="data.rows"
+            [tableStyle]="{ 'min-width': '50rem' }"
+        >
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{ col.header }}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{ rowData[col.field] }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</ng-container>
+<p-dialog header="Add a Driver" [(visible)]="this.display">
+    <form class="card p-fluid" [formGroup]="this.userForm">
+        <div class="field">
+            <label htmlFor="email">Email</label>
+            <input formControlName="email" pInputText id="email" type="text" />
+        </div>
+        <div class="field">
+            <label htmlFor="password">Password</label>
+            <input
+                formControlName="password"
+                pInputText
+                id="password"
+                type="password"
+            />
+        </div>
+        <div class="field">
+            <label htmlFor="role">Role</label>
+            <p-dropdown
+            appendTo="body"
+                id="role"
+                [options]="this.roles"
+                formControlName="role"
+                [showClear]="true"
+            ></p-dropdown>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            class="p-button-secondary p-button-text"
+            icon="pi pi-times"
+            (click)="display = false"
+            label="Cancel"
+        ></button>
+        <button
+            [loading]="this.loading"
+            [disabled]="this.userForm.invalid"
+            [icon]="icon"
+            (click)="this.onCreateUser()"
+            label="Submit"
+            pButton
+            autofocus
+        ></button>
+    </ng-template>
+</p-dialog>

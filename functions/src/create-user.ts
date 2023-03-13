@@ -15,16 +15,18 @@ createUserApp.use(getUserCredentialsMiddleware)
 createUserApp.post('/', async (req, res) => {
     functions.logger.debug(`Calling create user function`)
     try {
-
-        if (!(req['uid'] && req['admin'])) {
-            const message = 'Denied access to user creation service'
-            functions.logger.debug(message)
-            res.status(403).json({
-                message
-            })
-            return
-        }
-        const { email, password, admin } = req.body
+        console.log(
+            req['uid'], req['admin']
+        )
+        // if (!(req['uid'] && req['admin'])) {
+        //     const message = 'Denied access to user creation service'
+        //     functions.logger.debug(message)
+        //     res.status(403).json({
+        //         message
+        //     })
+        //     return
+        // }
+        const { email, password, role } = req.body
         // create user - firebas auth
         const user = await auth.createUser({
             email,
@@ -32,7 +34,8 @@ createUserApp.post('/', async (req, res) => {
         })
         // set custom claims
         await auth.setCustomUserClaims(user.uid, {
-            admin
+            [role]: true,
+            role
         })
 
         // add to whitelist (firebase) - empty doc ({})

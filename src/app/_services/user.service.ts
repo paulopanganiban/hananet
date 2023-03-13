@@ -34,7 +34,8 @@ export class UserService {
     )
 
     this.roles$ = this.afAuth.idTokenResult.pipe(
-      map(token => <any>token?.claims ?? { admin: false })
+      map(token => <any>token?.claims),
+      tap(token => console.log(token, 'roles$'))
     )
     this.userCredentials$ = this.afAuth.authState.pipe(
       map(({ displayName, email }) => ({ displayName, email }))
